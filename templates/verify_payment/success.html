@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static % }
+{% block title %}Success{% endblock %}
+{% load course_tags %}
+{% block content %}
+<div class="container py-8 py-lg-11">
+<div class="row">
+<div class="col-xl-8 mx-xl-auto">
+<img src="( static 'assets/img/success.png' )" width="80px" class="img-fluid mx-auto d-block">
+<header class="entry-header mt-4">
+<h1 class="entry-title text-center">Order received</h1>
+<p class="text-center">Thank you. Your order has been received.</p>
+</header>
+<div class="row border border-info p-4">
+<div class="col-lg-3">
+Order ID: <br>
+<strong>{{payment.order_id}}</strong>
+</div>
+<div class="col-lg-3">
+Date:<br>
+<strong> {{payment.date}}</strong>
+</div>
+<div class="col-lg-3">
+Total: <br>
+<strong> {{payment.course.price}} </strong>
+</div>
+<div class="col-lg-3">
+Payment method: <br>
+<strong>Check payments</strong>
+</div>
+</div>
+<br>
+  <div class="row p-4 border border-dark">
+    <div class="section">
+        <h2>Order details</h2>
+    </div>
+    <div class="item">
+        <b>Product</b>
+        <b class="text-right">Total</b>
+    </div>
+    <hr>
+    <div class="item">
+        <span>{{payment.course.title}}:</span>
+        <span class="text-right">&#x20B9; {{payment.course.price}}</span>
+    </div>
+    <div class="item">
+        <span class="text-right">Discount:</span>
+        <span class="text-right">{{payment.course.discount}} %</span>
+    </div>
+    <hr>
+    <div class="item">
+        <b class="text-right">Subtotal:</b>
+        <span class="text-right">&#x20B9; {% discount_calculation payment.course.price payment.course.discount %}</span>
+    </div>
+    <div class="item">
+        <b class="text-right">Payment method:</b>
+        <span class="text-right">Online payments</span>
+    </div>
+    <div class="item">
+        <b class="text-right">Total:</b>
+        <span class="text-right">&#x20B9; {% discount_calculation payment.course.price payment.course.discount %}</span>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+{% endblock %}
